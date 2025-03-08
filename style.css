@@ -190,9 +190,9 @@ form .form-actions{
     display: flex;
 }
 
-/* main .active-form{
-
-} */
+main .active-form{
+    display: none;
+}
 
 main .active-form form{
     display: flex;

@@ -9,6 +9,13 @@ class Note{
 class App{
     constructor(notes){
         this.notes = [];
+        
+        this.$activeForm = document.querySelector(".active-form");
+        this.$inactiveForm = document.querySelector(".inactive-form");
+        this.$noteTitle = document.querySelector("# note-title");
+        this.$noteText = document.querySelector("#note-text");
+
+        this.addEventListeners();
     }
 
     addNote(id, {title, text}){
@@ -39,32 +46,24 @@ class App{
                 Text: ${item.text}`);
         });
     }
-}
 
-let noteOne = {
-    title: "Title",
-    text: "Text"
-}
+    addEventListeners(){
+        document.body.addEventListener("click", (event) =>{
+            this.handleFormClick(event);
+        });
+    }
 
-let updatedNote = {
-    title: "Updated Title",
-    text: "Updated Text"
+    handleFormClick(event){
+        let isIactiveFormClickedOn = this.$inactiveForm.contains(event.target);
+        let isActiveFormClickedOn = this.$activeForm.contains(event.target);
+
+        if(isIactiveFormClickedOn){
+            this.$inactiveForm.style.display = "none";
+            this.$activeForm.style.display = "block";
+            this.$noteText.focus();
+        }
+    }
 }
 
 let app = new App();
-app.addNote(0, noteOne);
-app.addNote(1, noteOne);
-app.addNote(2, noteOne);
-app.addNote(3, noteOne);
 
-app.displayNote();
-
-setTimeout(() => {
-    app.editNote(3, updatedNote);
-    app.displayNote();
-}, 1000);
-
-setTimeout(() => {
-    app.deleteNote(2);
-    app.displayNote();
-}, 2000);
