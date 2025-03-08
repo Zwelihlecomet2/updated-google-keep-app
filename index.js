@@ -12,7 +12,7 @@ class App{
         
         this.$activeForm = document.querySelector(".active-form");
         this.$inactiveForm = document.querySelector(".inactive-form");
-        this.$noteTitle = document.querySelector("# note-title");
+        this.$noteTitle = document.querySelector("#note-title");
         this.$noteText = document.querySelector("#note-text");
 
         this.addEventListeners();
