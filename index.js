@@ -54,14 +54,26 @@ class App{
     }
 
     handleFormClick(event){
-        let isIactiveFormClickedOn = this.$inactiveForm.contains(event.target);
+        let isInactiveFormClickedOn = this.$inactiveForm.contains(event.target);
         let isActiveFormClickedOn = this.$activeForm.contains(event.target);
 
-        if(isIactiveFormClickedOn){
-            this.$inactiveForm.style.display = "none";
-            this.$activeForm.style.display = "block";
-            this.$noteText.focus();
+        if(isInactiveFormClickedOn){
+            this.openActiveForm();
         }
+        else if(!isInactiveFormClickedOn  && !isActiveFormClickedOn){
+            this.closeActiveForm();
+        }
+    }
+
+    openActiveForm(){
+        this.$inactiveForm.style.display = "none";
+        this.$activeForm.style.display = "block";
+        this.$noteText.focus();
+    }
+
+    closeActiveForm(){
+        this.$inactiveForm.style.display = "block";
+        this.$activeForm.style.display = "none";
     }
 }
 
