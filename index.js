@@ -8,15 +8,18 @@ class Note{
 
 class App{
     constructor(notes){
-        this.notes = [];
+        this.notes = [new Note(1, "test title", "test text")];
 
         this.$inactiveForm = document.querySelector(".inactive-form");
         this.$activeForm = document.querySelector(".active-form");
         this.$noteTitle = document.querySelector("#note-title");
         this.$noteText = document.querySelector("#note-text");
         this.$notes = document.querySelector(".notes");
+        this.$form = document.querySelector("#form");
+        this.$checkCircle = document.querySelector(".check-circle");
 
         this.addEventListeners();
+        this.displayNote();
     }
 
     addNote({title, text}){
@@ -25,7 +28,6 @@ class App{
             this.notes = [...this.notes, newNote];
             this.displayNote();
         }
-
     }
 
     editNote(id, {title, text}){
@@ -84,6 +86,16 @@ class App{
     addEventListeners(){
         document.body.addEventListener("click", (event) =>{
             this.handleFormClick(event);
+        });
+
+        this.$form.addEventListener("submit", (event) =>{
+            event.preventDefault();
+
+            let title = this.$noteTitle.value;
+            let text = this.$noteText.value;
+
+            this.addNote({title, text});
+            this.closeActiveForm();
         });
     };
 
