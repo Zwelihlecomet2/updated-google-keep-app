@@ -190,29 +190,30 @@ form .form-actions{
     display: flex;
 }
 
-main .active-form{
+.active-form{
     display: none;
 }
 
-main .active-form form{
+.form{
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 10px;
 }
 
-main .active-form .form-actions .icons{
+
+.form .form-actions .icons{
     display: flex;
 }
 
-main .active-form .form-actions{
+.form .form-actions{
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-top: 5px;
 }
 
-.active-form .material-symbols-outlined{
+.form .material-symbols-outlined{
     font-size: 1.1rem;
 }
 
@@ -269,6 +270,11 @@ main .active-form .form-actions{
     justify-content: center;
     visibility: hidden;
 }
+
+.visible-footer{
+    visibility: visible;
+}
+
 
 .note-footer .material-symbols-outlined{
     color: #5f6368;
