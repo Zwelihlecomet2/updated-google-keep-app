@@ -20,8 +20,9 @@ class App{
         this.$modalForm = document.querySelector("#modal-form");
         this.$modalTitle = document.querySelector("#modal-Title");
         this.$modalText = document.querySelector("#modal-Text");
+        this.$modalCloseButton = document.querySelector("#modal-close-btn");
 
-        this.addEventListeners();
+         this.addEventListeners();
         this.displayNote();
     }
 
@@ -125,11 +126,6 @@ class App{
 
         this.$modalForm.addEventListener("submit", (event) =>{
             event.preventDefault();
-            this.closeModal(event);
-        });
-
-        this.$notes.addEventListener("mouseover", (event) =>{
-            
         });
     };
 
@@ -178,7 +174,8 @@ class App{
 
     closeModal(event){
         let isModalFormClickedOn = this.$modalForm.contains(event.target);
-        if(!isModalFormClickedOn && this.$modal.classList.contains("open-modal")){
+        let isModalCloseButtonClickedOn = this.$modalCloseButton.contains(event.target);
+        if((!isModalFormClickedOn || isModalCloseButtonClickedOn) && this.$modal.classList.contains("open-modal")){
             this.editNote(this.selectedNoteId, {title: this.$modalTitle.value, text: this.$modalText.value});
             this.$modal.classList.remove("open-modal");
         }
@@ -200,4 +197,3 @@ class App{
 }
 
 let app = new App();
-
