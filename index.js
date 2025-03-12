@@ -9,6 +9,7 @@ class App{
     constructor(notes){
         this.notes = [new Note("abc1", "test title", "test text")];
         this.selectedNoteId = "";
+        this.miniSidebar = true;
 
         this.$inactiveForm = document.querySelector(".inactive-form");
         this.$activeForm = document.querySelector(".active-form");
@@ -21,6 +22,9 @@ class App{
         this.$modalTitle = document.querySelector("#modal-Title");
         this.$modalText = document.querySelector("#modal-Text");
         this.$modalCloseButton = document.querySelector("#modal-close-btn");
+        this.$sidebar = document.querySelector(".side-bar");
+        this.$sidebarActiveItem = document.querySelector(".active-item");
+        this.$menu = document.querySelector("#menu");
 
          this.addEventListeners();
         this.displayNote();
@@ -127,6 +131,18 @@ class App{
         this.$modalForm.addEventListener("submit", (event) =>{
             event.preventDefault();
         });
+
+        this.$sidebar.addEventListener("mouseover", (event) =>{
+            this.handleToggleSideBarHover(event);
+        });
+
+        this.$sidebar.addEventListener("mouseout", (event) =>{
+            this.handleToggleSideBarHover(event);
+        });
+
+        this.$menu.addEventListener("click", (event) =>{
+            this.handleToggleSideBarHover(event);
+        });
     };
 
     handleFormClick(){
@@ -192,6 +208,22 @@ class App{
         }
         else{
             return;
+        }
+    }
+
+    handleToggleSideBarHover(){
+        if(this.miniSidebar){
+            this.$sidebar.style.width = "250px";
+            this.$sidebar.classList.add("side-bar-hover");
+            this.$sidebarActiveItem.classList.add("side-bar-active-items");
+            this.miniSidebar = false;
+        }
+
+        else{
+            this.$sidebar.style.width = "66px";
+            this.$sidebar.classList.remove("side-bar-hover");
+            this.$sidebarActiveItem.classList.remove("side-bar-active-items");
+            this.miniSidebar = true;
         }
     }
 }
