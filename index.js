@@ -7,7 +7,7 @@ class Note{
 }
 class App{
     constructor(notes){
-        this.notes = [new Note("abc1", "test title", "test text")];
+        this.notes = JSON.parse(localStorage.getItem(`notes`)) || [];
         this.selectedNoteId = "";
         this.miniSidebar = true;
 
@@ -27,6 +27,11 @@ class App{
         this.$menu = document.querySelector("#menu");
 
          this.addEventListeners();
+        this.render();
+    }
+
+    render(){
+        this.saveNotes();
         this.displayNote();
     }
 
@@ -34,7 +39,7 @@ class App{
         if(this.$noteTitle.value !== "" && this.$noteText.value !== ""){
             let newNote = new Note(cuid(), title, text);
             this.notes = [...this.notes, newNote];
-            this.displayNote();
+            this.render();
         }
         else{
             return;
@@ -49,12 +54,12 @@ class App{
             }
             return item;
         });
-        this.displayNote();
+        this.render();
     }
 
     deleteNote(id){
         this.notes = this.notes.filter((item) => item.id !== id);
-        this.displayNote();
+        this.render();
     }
 
     handleMouseOverNote(element){
@@ -225,6 +230,10 @@ class App{
             this.$sidebarActiveItem.classList.remove("side-bar-active-items");
             this.miniSidebar = true;
         }
+    }
+
+    saveNotes(){
+         localStorage.setItem(`notes`, JSON.stringify(this.notes));
     }
 }
 
