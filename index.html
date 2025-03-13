@@ -3,203 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes | Keeping | App</title>
     <link rel="stylesheet" href="./style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-    rel="stylesheet" />
-    <title>Notes | Keeping App</title>
-    <link rel="shortcut icon" href="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"" type="image/x-icon">
+    <link rel="stylesheet" href="./responsive.css">
+    <link rel="shortcut icon" href="./assets/logo.jpg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <nav>
-        <d class="logo-area">
-            <div class="tooltip">
-                <span id="menu" class="material-symbols-outlined hover">menu</span>
-                <span class="tooltip-text">Main Menu</span>
-            </div>
-            <img class="gb_Od gb_Pd" src="https://www.gstatic.com/images/
-            branding/product/1x/keep_2020q4_48dp.png"
-            srcset="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x,
-            https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x " 
-            alt="" aria-hidden="true" role="presentation" style="width:40px;height:40px">
-            <span class="logo-text">Keep</span>
-        </d iv>
-
-        <div class="search-area">
-            <div class="tooltip">
-                <span class="material-symbols-outlined hover">search</span>
-                <span class="tooltip-text">Search</span>
-            </div>
-            <input type="text" placeholder="Search">
-        </div>
-
-        <div class="settings-area">
-            <div class="tooltip">
-                <span class="material-symbols-outlined hover">refresh</span>
-                <span class="tooltip-text">Refresh</span>
-            </div>
-            <div class="tooltip">
-                <span class="material-symbols-outlined hover">view_agenda</span>
-                <span class="tooltip-text">List Menu</span>
-            </div>
-            <div class="tooltip">  
-                <span class="material-symbols-outlined hover">settings</span>
-                <span class="tooltip-text">Settings</span>
-            </div>
-        </div>
-
-        <div class="profile-actions-area">
-            <div class="tooltip">
-                <span class="material-symbols-outlined hover">apps</span>
-                <span class="tooltip-text">Apps</span>
-            </div>
-            <div class="tooltip">
-                <span class="material-symbols-outlined hover">account_circle</span>
-                <span class="tooltip-text">Accounts</span>
-            </div>
-        </div>
-    </nav>
-
-    <main>
-        <div class="side-bar">
-            <div class="sidebar-items active-item">
-                <span class="material-symbols-outlined hover active">lightbulb</span>  
-                <span class="sidebar-text">Notes</span>          
-            </div>
-            <div class="sidebar-items">
-                <span class="material-symbols-outlined hover">notifications</span>
-                <span class="sidebar-text">Reminders</span>                      
-            </div>
-            <div class="sidebar-items">
-                <span class="material-symbols-outlined hover">edit</span>
-                <span class="sidebar-text">Edit Labels</span>          
-            </div>
-            <div class="sidebar-items">
-                <span class="material-symbols-outlined hover">archive</span>
-                <span class="sidebar-text">Archive</span>          
-            </div>
-            <div class="sidebar-items">
-                <span class="material-symbols-outlined hover">delete</span>        
-                <span class="sidebar-text">Trash</span>              
-            </div>
-        </div>
-
-
-        <div class="form-container inactive-form">
-            <form action="">
-                <input type="text" placeholder="Take a note... " class="note-text">
-                <div class="form-actions">
-                    <div class="tooltip">
-                        <span class="material-symbols-outlined hover">check_box</span>
-                        <span class="tooltip-text">New list</span>
-                    </div>
-                    <div class="tooltip">
-                        <span class="material-symbols-outlined hover">brush</span>
-                        <span class="tooltip-text">New note with drawing</span>
-                    </div>
-                    <div class="tooltip">
-                        <span class="material-symbols-outlined hover">image</span>
-                        <span class="tooltip-text">New note with image</span>
-                    </div>
+    <div class="first-page" id="land-page">
+        <div class="overlay"></div>
+        <header>
+            <nav class="p-lg-2 fixed-lg-top">
+                <div class="logo mt-2">
+                    <a href="#"><img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" class="img-fluid" alt=""></a>
                 </div>
-            </form>
-        </div>
-
-        <div class="form-container active-form">
-            <form class="form" id="form">
-                <input type="text" placeholder="title" id="note-title" class="note-title">
-                <input type="text" placeholder="Take a note... " id="note-text" class="note-text">
-                <div class="form-actions">
-                    <div class="icons">
-                        <div class="tooltip">
-                            <span class="material-symbols-outlined hover small-icons">add_alert</span>
-                            <span class="tooltip-text">Remind me</span>
-                        </div>
-                        <div class="tooltip">
-                            <span class="material-symbols-outlined hover small-icons">person_add</span>
-                            <span class="tooltip-text">Collaborator</span>
-                        </div>
-                        <div class="tooltip">
-                            <span class="material-symbols-outlined hover small-icons">palette</span>
-                            <span class="tooltip-text">Change color</span>
-                        </div>
-                        <div class="tooltip">
-                            <span class="material-symbols-outlined hover small-icons">image</span>
-                            <span class="tooltip-text">Image</span>
-                        </div>
-                        <div class="tooltip">
-                            <span class="material-symbols-outlined hover small-icons">archive</span>
-                            <span class="tooltip-text">Archive</span>
-                        </div>
-                        <div class="tooltip">
-                            <span class="material-symbols-outlined hover small-icons">more_vert</span>
-                            <span class="tooltip-text">More</span>
-                        </div>
-                        <div class="tooltip">
-                            <span class="material-symbols-outlined hover small-icons">undo</span>
-                            <span class="tooltip-text">Undo</span>
-                        </div>
-                        <div class="tooltip">
-                            <span class="material-symbols-outlined hover small-icons">redo</span>
-                            <span class="tooltip-text">Redo</span>
-                        </div>
-                    </div>
-                    <button class="close-btn">Close</button>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/zwelihle.comet.9" target="_blank"><i class="bi bi-facebook text-primary"></i></a>
+                    <a href="https://x.com/ZwelihleComet" target="_blank"><i class="bi bi-twitter text-info"></i></a>
+                    <a href="https://www.instagram.com/zwelihlecomet/" target="_blank"><i class="bi bi-instagram text-danger"></i></a>
                 </div>
-            </form>
-        </div>
+            </nav>
+        </header>
 
-        <div class="notes"></div>
-
-        <div class="modal">
-            <div class="modal-content">
-                <div class="form-container">
-                    <form class="form" id="modal-form">
-                        <input type="text" id="modal-Title" class="note-title" placeholder="title">
-                        <input type="text" id="modal-Text" placeholder="Take a note... " class="note-text">
-                        <div class="form-actions">
-                            <div class="icons">
-                                <div class="tooltip">
-                                    <span class="material-symbols-outlined hover small-icons">add_alert</span>
-                                    <span class="tooltip-text">Remind me</span>
-                                </div>
-                                <div class="tooltip">
-                                    <span class="material-symbols-outlined hover small-icons">person_add</span>
-                                    <span class="tooltip-text">Collaborator</span>
-                                </div>
-                                <div class="tooltip">
-                                    <span class="material-symbols-outlined hover small-icons">palette</span>
-                                    <span class="tooltip-text">Change color</span>
-                                </div>
-                                <div class="tooltip">
-                                    <span class="material-symbols-outlined hover small-icons">image</span>
-                                    <span class="tooltip-text">Image</span>
-                                </div>
-                                <div class="tooltip">
-                                    <span class="material-symbols-outlined hover small-icons">archive</span>
-                                    <span class="tooltip-text">Archive</span>
-                                </div>
-                                <div class="tooltip">
-                                    <span class="material-symbols-outlined hover small-icons">more_vert</span>
-                                    <span class="tooltip-text">More</span>
-                                </div>
-                                <div class="tooltip">
-                                    <span class="material-symbols-outlined hover small-icons">undo</span>
-                                    <span class="tooltip-text">Undo</span>
-                                </div>
-                                <div class="tooltip">
-                                    <span class="material-symbols-outlined hover small-icons">redo</span>
-                                    <span class="tooltip-text">Redo</span>
-                                </div>
-                            </div>
-                            <button id="modal-close-btn" class="close-btn">Close</button>
-                        </div>
-                    </form>
+        <div class="container text-center mt-5">
+            <h1 class="text-white">Save Your thoughts,<br>and Customize Your <br>Importancies<br>wherever you are,<br>at any time You want.</h1>
+            
+            <div class="d-flex justify-content-center">
+                <div class="down-button mt-3 me-4">
+                    <a href="#last-page"><i class="bi bi-arrow-down-circle-fill text-light fs-1"></i></a>
+                </div>
+                <div class="app-button">
+                    <a href="./app.html"><button type="button"  class="btn btn-primary btn-lg mt-3">Go to App</button></a>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
-    <script src="./index.js"></script>
+    <div class="container">
+        <h1 class="text-center mt-3">Capture what's On your mind</h1>
+        <p class="lead text-center">Add notes, lists, photos, and audio to store for whenever you want them.</p>
+    </div>
+
+
+    <div class="second-page">
+        <div class="container">
+            <section class="mb-5">
+                <div class="images text-center">
+                    <div class="first-images">
+                        <img src="./assets/first-reminder.jpg" class="img-fluid" alt="...">
+                        <img src="./assets/important-dates.png" class="img-fluid" alt="...">   
+                        <img src="./assets/photo-album.jpg" class="img-fluid" alt="...">
+                        <img src="./assets/audio.jpg" class="img-fluid" alt="...">             
+                    </div>
+                </div>
+                <hr>
+            </section>
+        </div>
+    </div>
+
+    <div class="third-page">
+        <div class="container d-lg-flex">
+            <div class="text">
+                <h1>
+                    When and where you need it
+                </h1>
+                <p class="lead">
+                    Need to remember to pick up some groceries?<br>
+                    Set a location-based reminder to pull up your grocery list right when you get <br> to the store. <br>
+                    Need to finish a to-do? Set a time-based reminder to <br>
+                    make sure you never miss a thing.
+                </p>
+            </div>
+            <div class="alert-picture">
+                <img src="./assets/recorder.jpg" class="img-fluid" alt="...">             
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <div class="lost-page">
+        <div class="container">
+            <hr>
+            <section class="d-lg-flex">
+                <div class="image">
+                    <img src="./assets/sharing-image.jpg" class="img-fluid" alt="...">             
+                </div>
+                <div class="text mt-5">
+                    <h1>Share your thoughts with <br> family and friends.</h1>
+                    <p class="lead">
+                        Next time you go to the store, <br> 
+                        share your shopping list on the note taking app and watch as items get checked off in real time. <br> 
+                        No need for text messages back and forth. <br>
+                        Get things done together, faster.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="fourth-page">
+        <div class="container mt-5">
+            <hr>
+            <section class="d-lg-flex">
+                <div class="text">
+                    <h1>Find what you need, fast!</h1>
+                    <p class="lead">
+                        Quickly filter and search for notes by color and <br> 
+                        other attributes like lists with images, audio  
+                        <br> notes with reminders or just see shared notes. <br> 
+                        Find what you're looking for even faster, and let <br>
+                        the note taking app do the remembering for you.
+                    </p>
+                </div>
+                <div class="image text-center">
+                    <img src="./assets/main notes.png" class="img-fluid" alt="...">             
+                </div>
+            </section>
+            <hr>
+        </div>
+    </div>
+
+    <div class="fifth-page">
+        <div class="container text-center mt-5">
+            <section>
+                <div class="gadgets">
+                    <img src="./assets/gadgets.jpg" class="img-fluid" alt="...">             
+                </div>
+                <div class="text mt-5">
+                    <h1>Always within reach</h1>
+                    <p class="lead ">
+                        Keep works on your phone, tablet and computer. <br>
+                        Everything you add to the note taking app syncs across all your devices so your important stuff is always <br>
+                        with you.
+                    </p>
+
+                    <p class="lead">
+                        Syncing across your devices requires internet connection.
+                    </p>
+                </div>
+            </section>
+            <hr>
+        </div>
+    </div>
+
+
+    <div class="last-page" id="last-page">
+        <div class="container mb-5 text-center">
+            <section>
+                <div class="overlay"></div>
+                <div class="text">
+                    <p class="lead text-white text-center">Note down Your Every thoughts.</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="up-button mt-3 me-4">
+                        <a href="#land-page"><i class="bi bi-arrow-up-circle-fill text-light fs-1"></i></a>
+                    </div>
+                    <div class="app-button fs-1">
+                        <a href="./app.html"><button type="button"  class="btn btn-primary btn-lg mt-3">Go to App</button></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="text-center bg-dark text-white p-1 fixed-bottom">
+            <p class="lead mt-3">Developed By Zwelihle Comet ♥</p>
+        </div>
+    </footer>
 </body>
 </html>

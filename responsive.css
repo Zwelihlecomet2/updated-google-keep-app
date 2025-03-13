@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+@media (min-width : 768px){
+
+    .first-page header nav{
+        height: 9vh;
+        width: 100%;
+        position: fixed;
+        top: 0;
+    }
+
+
+    .third-page .container .text{
+        margin-top: 10em;
+    }
+
+    .third-page .container .alert-picture img{
+        height: 3em;
+        width: 3em;
+        margin: 1rem;
+        font-size: 10em;
+    }
+
+    .fourth-page .container section{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+
+    .fourth-page .container section .image img{
+        height: 100%;
+        width: 40%;
+        margin-left: 15em;
+    }
+
+    .lost-page .container section .text{
+        margin-left: 20em;
+    }
+
+
+    /* Media Queries for the App Landing Page */
+    .left-side-bar .search-bar form input{
+        width: 40vw;
+    }
+
+    .main-section .middle-menu-bar .input-group input{
+        width: 60vw;
+    }
+
+
+}
+
+
+
+/* Media Queries For Mobile Phones */
+@media (max-width : 767px){
+    .first-page header nav{
+        height: 11vh;
+        width: 100%;
+        position: fixed;
+        top: 0;
+    }
+
+
+    /* Media Queries for the App Landing Page */
+
+    header nav .right-side-bar span{
+        padding: 0px 3px;
+    }
+
+
+
+    .main-section .left-menu-bar .inline{
+        display: none;
+    }
+
+    .main-section .left-menu-bar:hover{
+        background-color: #cccc;
+        position: relative;
+        width: 52vw;
+        height: 87vh;
+        transition-duration: 1s;
+        z-index: 1;
+    }
+    
+    .middle-menu-bar{
+        position: absolute;
+        left: 65px;
+    }
+
+
+    .main-section .left-menu-bar:hover .inline{
+        display: inline;
+        color: black;
+    }
+
+}
