@@ -26,7 +26,7 @@ class App{
         this.$sidebarActiveItem = document.querySelector(".active-item");
         this.$menu = document.querySelector("#menu");
 
-         this.addEventListeners();
+        this.addEventListeners();
         this.render();
     }
 
