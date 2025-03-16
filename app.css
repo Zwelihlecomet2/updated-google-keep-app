@@ -101,6 +101,17 @@ input:focus{
     align-items: center;
 }
 
+.profile-actions-area .tooltip{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.auth-user{
+    cursor: pointer;
+}
+
 /* Main Section Styles */
 
 /* Side Bar Styles */

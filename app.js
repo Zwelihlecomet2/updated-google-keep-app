@@ -25,17 +25,16 @@ class App{
         this.$sidebar = document.querySelector(".side-bar");
         this.$sidebarActiveItem = document.querySelector(".active-item");
         this.$menu = document.querySelector("#menu");
+        this.$app = document.querySelector("#app");
+        this.$firebaseAuthContainer = document.querySelector("#firebaseui-auth-container");
+        this.$authUser = document.querySelector(".auth-user");
+        this.$logOut = document.querySelector(".logout");
+        
         
         // Initialize the FirebaseUI Widget using Firebase.
         this.ui = new firebaseui.auth.AuthUI(auth);
-        
-        this.ui.start('#firebaseui-auth-container', {
-            signInOptions: [
-              firebase.auth.EmailAuthProvider.PROVIDER_ID
-            ],
-            // Other config options...
-          });
 
+        this.handleAuthentication();
         this.addEventListeners();
         this.render();
     }
@@ -158,6 +157,10 @@ class App{
         this.$menu.addEventListener("click", (event) =>{
             this.handleToggleSideBarHover(event);
         });
+
+        this.$logOut.addEventListener("click", (event) =>{
+            this.handleLogOut(event);
+        });
     };
 
     handleFormClick(){
@@ -244,6 +247,47 @@ class App{
 
     saveNotes(){
          localStorage.setItem(`notes`, JSON.stringify(this.notes));
+    }
+
+    handleAuthentication(){
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              // User is signed in
+              console.log(user);
+              this.$authUser.innerHTML = user.displayName;
+              this.redirectToApp();
+            } else {
+              // User is signed out
+              this.redirectToAuth();
+            }
+          });
+    }
+
+    redirectToApp(){
+        this.$firebaseAuthContainer.style.display = "none";
+        this.$app.style.display = "block";
+    }
+
+    redirectToAuth(){
+        this.$firebaseAuthContainer.style.display = "block";
+        this.$app.style.display = "none";
+
+        this.ui.start('#firebaseui-auth-container', {
+            signInOptions: [
+              firebase.auth.EmailAuthProvider.PROVIDER_ID
+            ],
+            // Other config options...
+          });
+    }
+
+    handleLogOut(){
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            this.redirectToAuth();
+          }).catch((error) => {
+            // An error happened.
+            console.log("Error occured");
+          });
     }
 }
 
