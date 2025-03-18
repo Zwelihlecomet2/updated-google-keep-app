@@ -228,6 +228,19 @@
 
         // Initialize Cloud Firestore and get a reference to the service
         const db = firebase.firestore();
+
+        db.collection("users").add({
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+
   </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
