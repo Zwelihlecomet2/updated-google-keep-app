@@ -9,7 +9,7 @@ class App{
     constructor(notes){
         this.notes = JSON.parse(localStorage.getItem(`notes`)) || [];
         this.selectedNoteId = "";
-        this.miniSidebar = true;
+        this.miniSidebar = true;  
 
         this.$inactiveForm = document.querySelector(".inactive-form");
         this.$activeForm = document.querySelector(".active-form");
@@ -250,7 +250,7 @@ class App{
     handleAuthentication(){
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-              // User is signed in
+            // User is signed in
             this.$logout.innerHTML = user.displayName;
             this.redirectToApp();
               
@@ -272,7 +272,8 @@ class App{
 
         this.ui.start('#firebaseui-auth-container', {
             signInOptions: [
-              firebase.auth.EmailAuthProvider.PROVIDER_ID
+              firebase.auth.EmailAuthProvider.PROVIDER_ID,
+              firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             ],
             // Other config options...
           });
