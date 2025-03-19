@@ -7,9 +7,10 @@ class Note{
 }
 class App{
     constructor(notes){
-        this.notes = JSON.parse(localStorage.getItem(`notes`)) || [];
+        this.notes = [];
         this.selectedNoteId = "";
         this.miniSidebar = true;  
+        this.userId = "";
 
         this.$inactiveForm = document.querySelector(".inactive-form");
         this.$activeForm = document.querySelector(".active-form");
@@ -34,7 +35,7 @@ class App{
 
         this.handleAuthentication();
         this.addEventListeners();
-        this.render();
+        this.displayNote();
     }
 
     render(){
@@ -44,7 +45,7 @@ class App{
 
     addNote({title, text}){
         if(this.$noteTitle.value !== "" && this.$noteText.value !== ""){
-            let newNote = new Note(cuid(), title, text);
+            let newNote = {id: cuid(), title, text};
             this.notes = [...this.notes, newNote];
             this.render();
         }
@@ -157,7 +158,7 @@ class App{
         });
 
         this.$logout.addEventListener("click", (event) =>{
-            this.handleLogOut(Event);
+            this.handleLogOut(event);
         });
     };
 
@@ -244,13 +245,20 @@ class App{
     }
 
     saveNotes(){
-         localStorage.setItem(`notes`, JSON.stringify(this.notes));
+        db.collection("users").doc(this.userId).set({
+            notes: this.notes
+        }).then(() => {
+            console.log("Document successfully written!");
+        }).catch((error) => {
+            console.error("Error writing document: ", error);
+        });
     }
 
     handleAuthentication(){
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
             // User is signed in
+            this.userId = user.uid;
             this.$logout.innerHTML = user.displayName;
             this.redirectToApp();
               
@@ -271,6 +279,16 @@ class App{
         this.$app.style.display = "none";
 
         this.ui.start('#firebaseui-auth-container', {
+            callbacks: {
+                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                  // User successfully signed in.
+                  // Return type determines whether we continue the redirect automatically
+                  // or whether we leave that to developer to handle.
+                  this.userId = authResult.user.uid;
+                  this.$logout.innerHTML = user.displayName;
+                  redirectToApp();
+            }
+        },
             signInOptions: [
               firebase.auth.EmailAuthProvider.PROVIDER_ID,
               firebase.auth.GoogleAuthProvider.PROVIDER_ID,
