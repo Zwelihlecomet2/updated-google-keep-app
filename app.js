@@ -244,6 +244,32 @@ class App{
         }
     }
 
+    fetchNotesFromDataBase(){
+        var docRef = db.collection("users").doc(this.userId);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data().notes);
+                this.notes = doc.data().notes;
+                this.displayNote();
+            } 
+            else{
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+
+                db.collection("users").doc(this.userId).set({
+                    notes: []
+                }).then(() => {
+                    console.log("User successfully Created!");
+                }).catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }
+
     saveNotes(){
         db.collection("users").doc(this.userId).set({
             notes: this.notes
@@ -272,6 +298,7 @@ class App{
     redirectToApp(){
         this.$app.style.display = "block";
         this.$firebaseuiAuthContainer.style.display = "none";
+        this.fetchNotesFromDataBase();
     }
 
     redirectToAuth(){
@@ -300,6 +327,7 @@ class App{
     handleLogOut(){
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
+            this.redirectToAuth();
           }).catch((error) => {
             // An error happened.
           });
