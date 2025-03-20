@@ -307,18 +307,20 @@ class App{
 
         this.ui.start('#firebaseui-auth-container', {
             callbacks: {
-                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                signInSuccessWithAuthResult: (authResult, redirectUrl) => {
                   // User successfully signed in.
                   // Return type determines whether we continue the redirect automatically
                   // or whether we leave that to developer to handle.
                   this.userId = authResult.user.uid;
                   this.$logout.innerHTML = user.displayName;
-                  redirectToApp();
-            }
+                  this.redirectToApp();
+                }
         },
             signInOptions: [
               firebase.auth.EmailAuthProvider.PROVIDER_ID,
               firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+              firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+              firebase.auth.GithubAuthProvider.PROVIDER_ID
             ],
             // Other config options...
           });
