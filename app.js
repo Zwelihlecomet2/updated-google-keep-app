@@ -1,21 +1,3 @@
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  getAuth,
-} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-
-// var firebaseConfig = {
-//     apiKey: "AIzaSyA2u1TYH4e7x0OR3EjAuDCBICwONpYmUsk",
-//     authDomain: "notes-taking-app-d7bcc.firebaseapp.com",
-//     projectId: "notes-taking-app-d7bcc",
-//     storageBucket: "notes-taking-app-d7bcc.firebasestorage.app",
-//     messagingSenderId: "284593263467",
-//     appId: "1:284593263467:web:5d4bd84c0d37c7406db22e"
-//   };
-
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-
 class Note {
   constructor(id, title, text) {
     this.id = id;
@@ -45,14 +27,13 @@ class App {
     this.$sidebarActiveItem = document.querySelector(".active-item");
     this.$menu = document.querySelector("#menu");
     this.$app = document.querySelector("#app");
-    this.$firebaseuiAuthContainer = document.querySelector(
-      "#firebaseui-auth-container"
-    );
+    this.$firebaseuiAuthContainer = document.querySelector("#firebaseui-auth-container");
     this.$logout = document.querySelector("#logout");
     this.$signInWithGoogle = document.querySelector("#sign-in-with-google");
 
     // Initialize the FirebaseUI Widget using Firebase.
     this.ui = new firebaseui.auth.AuthUI(auth);
+    // google authentication Provider
     this.provider = new firebase.auth.GoogleAuthProvider();
 
     this.handleAuthentication();
@@ -320,7 +301,6 @@ class App {
 
   handleAuthentication() {
     firebase.auth().onAuthStateChanged((user) => {
-
       if (user) {
         // User is signed in
         this.userId = user.uid;
@@ -334,17 +314,16 @@ class App {
   }
 
   redirectToApp() {
+    this.$signInWithGoogle.style.display = "none";
     this.$app.style.display = "block";
-    this.$firebaseuiAuthContainer.style.display = "none";
+    // this.$firebaseuiAuthContainer.style.display = "none";
     this.fetchNotesFromDataBase();
   }
 
   redirectToAuth() {
-    this.$firebaseuiAuthContainer.style.display = "block";
+    this.$signInWithGoogle.style.display = "block";
+    // this.$firebaseuiAuthContainer.style.display = "block";
     this.$app.style.display = "none";
-
-    
-
     // this.ui.start("#firebaseui-auth-container", {
     //   callbacks: {
     //     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
@@ -385,9 +364,7 @@ class App {
   }
 
   handleLogOut() {
-    firebase
-      .auth()
-      .signOut()
+    firebase.auth().signOut()
       .then(() => {
         // Sign-out successful.
         this.redirectToAuth();
