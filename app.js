@@ -90,7 +90,7 @@ class App {
     this.$notes.innerHTML = this.notes
       .map((item) => {
         return `
-                    <div class="note" id="${item.id}" onmouseover="app.handleMouseOverNote(this)" onmouseout="app.handleMouseOutNote(this)">
+                    <div class="note" id="${item.id}">
                         <span class="material-symbols-outlined check-circle">check_circle</span>
                         <div class="title">${item.title}</div>
                         <div class="text">${item.text}</div>
@@ -161,23 +161,8 @@ class App {
     });
 
     this.$signInButton.addEventListener("click", (event) =>{
-      this.$email = document.querySelector("#email").value;
-      this.$password = document.querySelector("#password").value;
-
-      firebase.auth().createUserWithEmailAndPassword(this.$email, this.$password)
-      .then((userCredential) => {
-        // Signed in 
-        this.user = userCredential.user;
-        // ...
-        this.redirectToApp(event);
-      })
-    .catch((error) => {
-      this.errorCode = error.code;
-     var errorMessage = error.message;
-      // ..
-      alert(errorMessage);
-   });
- });
+        this.handleLoginWithEmailAndPassword(event);
+     });
 
     this.$signInWithGoogle.addEventListener("click", () => {
       // google authentication Provider
@@ -381,6 +366,26 @@ class App {
     //   ],
     //   // Other config options...
     // });
+  }
+
+  handleLoginWithEmailAndPassword(){
+    this.$email = document.querySelector("#email").value;
+    this.$password = document.querySelector("#password").value;
+
+    firebase.auth().createUserWithEmailAndPassword(this.$email, this.$password)
+    .then((userCredential) => {
+      // Signed in 
+      this.user = userCredential.user;
+      // ...
+        this.redirectToApp();
+    })
+  .catch((error) => {
+    this.errorCode = error.code;
+   var errorMessage = error.message;
+    // ..
+    alert(errorMessage);
+    this.redirectToAuth();
+    });
   }
 
   handleLogOut() {
