@@ -27,14 +27,13 @@ class App {
     this.$sidebarActiveItem = document.querySelector(".active-item");
     this.$menu = document.querySelector("#menu");
     this.$app = document.querySelector("#app");
-    this.$firebaseuiAuthContainer = document.querySelector("#firebaseui-auth-container");
+    this.$logInPage = document.querySelector(".login-container");
+    this.$signInButton = document.querySelector(".sign-in-btn");
+    this.$signInWithGoogle = document.querySelector("#google");
     this.$logout = document.querySelector("#logout");
-    this.$signInWithGoogle = document.querySelector("#sign-in-with-google");
 
-    // Initialize the FirebaseUI Widget using Firebase.
-    this.ui = new firebaseui.auth.AuthUI(auth);
-    // google authentication Provider
-    this.provider = new firebase.auth.GoogleAuthProvider();
+    // this.$firebaseuiAuthContainer = document.querySelector("#firebaseui-auth-container");
+    // this.$signInWithGoogle = document.querySelector("#sign-in-with-google");
 
     this.handleAuthentication();
     this.addEventListeners();
@@ -161,13 +160,35 @@ class App {
       this.handleToggleSideBarHover(event);
     });
 
+    this.$signInButton.addEventListener("click", (event) =>{
+      this.$email = document.querySelector("#email").value;
+      this.$password = document.querySelector("#password").value;
+
+      firebase.auth().createUserWithEmailAndPassword(this.$email, this.$password)
+      .then((userCredential) => {
+        // Signed in 
+        this.user = userCredential.user;
+        // ...
+        this.redirectToApp(event);
+      })
+    .catch((error) => {
+      this.errorCode = error.code;
+     var errorMessage = error.message;
+      // ..
+      alert(errorMessage);
+   });
+ });
+
+    this.$signInWithGoogle.addEventListener("click", () => {
+      // google authentication Provider
+      this.provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(this.provider);
+    });
+
     this.$logout.addEventListener("click", (event) => {
       this.handleLogOut(event);
     });
 
-    this.$signInWithGoogle.addEventListener("click", () => {
-        auth.signInWithPopup(this.provider)
-    });
   }
 
   handleFormClick() {
@@ -314,15 +335,14 @@ class App {
   }
 
   redirectToApp() {
-    this.$signInWithGoogle.style.display = "none";
+    this.$logInPage.style.display = "none";
     this.$app.style.display = "block";
     // this.$firebaseuiAuthContainer.style.display = "none";
     this.fetchNotesFromDataBase();
   }
 
   redirectToAuth() {
-    this.$signInWithGoogle.style.display = "block";
-    // this.$firebaseuiAuthContainer.style.display = "block";
+    this.$logInPage.style.display = "block";
     this.$app.style.display = "none";
     // this.ui.start("#firebaseui-auth-container", {
     //   callbacks: {
@@ -371,6 +391,7 @@ class App {
       })
       .catch((error) => {
         // An error happened.
+        alert(error);
       });
   }
 }
